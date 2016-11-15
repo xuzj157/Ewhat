@@ -58,13 +58,7 @@ public class LunchFragment extends Fragment {
             int time = Tools.ram(3000, 2000);
             textView.invalidate();
             Alpha = ObjectAnimator.ofFloat(textView, "alpha", 0f, 0.6f, 0f);
-//            scale = ObjectAnimator.ofFloat(textView,"scale",1,3,1,3);
             Alpha.setDuration(time - 1).start();
-//            scale.setDuration(time - 1).start();
-//            animatorSet = new AnimatorSet();
-//            animatorSet.setDuration(time-1);
-//            animatorSet.play(scale).with(Alpha);
-//            animatorSet.start();
             handler.postDelayed(this, Tools.ram(250, 200));
         }
     };

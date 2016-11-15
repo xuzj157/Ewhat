@@ -62,6 +62,7 @@ public class MainActivity extends FragmentActivity {
 //        设定第一个界面为初始界面
         mPageVp.setCurrentItem(0);
         mTabBreakfastRb.setTextColor(color);
+        mTabBreakfastRb.setTextSize(21);
 //        mTabBreakfastRb.setBackgroundColor(Color.GRAY);
 
         mPageVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -103,14 +104,17 @@ public class MainActivity extends FragmentActivity {
                 switch (position) {
                     case 0:
                         mTabBreakfastRb.setTextColor(color);
+                        mTabBreakfastRb.setTextSize(21);
 //                        mTabBreakfastRb.setBackgroundColor(Color.GRAY);
                         break;
                     case 1:
                         mTabLunchRb.setTextColor(color);
+                        mTabLunchRb.setTextSize(21);
 //                        mTabLunchRb.setBackgroundColor(Color.GRAY);
                         break;
                     case 2:
                         mTabDinnerRb.setTextColor(color);
+                        mTabDinnerRb.setTextSize(21);
 //                        mTabDinnerRb.setBackgroundColor(Color.GRAY);
                         break;
                 }
@@ -161,10 +165,11 @@ public class MainActivity extends FragmentActivity {
         mTabBreakfastRb.setTextColor(Color.parseColor("#FFFFFF"));
         mTabLunchRb.setTextColor(Color.parseColor("#FFFFFF"));
         mTabDinnerRb.setTextColor(Color.parseColor("#FFFFFF"));
-//        mTabBreakfastRb.setTextColor(Color.parseColor("#666666"));
-//        mTabLunchRb.setTextColor(Color.parseColor("#666666"));
-//        mTabDinnerRb.setTextColor(Color.parseColor("#666666"));
-//
+
+        mTabBreakfastRb.setTextSize(15);
+        mTabLunchRb.setTextSize(15);
+        mTabDinnerRb.setTextSize(15);
+
 //        mTabBreakfastRb.setBackgroundResource(R.color.brown);
 //        mTabLunchRb.setBackgroundResource(R.color.brown);
 //        mTabDinnerRb.setBackgroundResource(R.color.brown);
