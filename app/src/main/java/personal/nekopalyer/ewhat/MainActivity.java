@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.FragmentAdapter;
+import oteher.FragmentAdapter;
 
 public class MainActivity extends FragmentActivity {
 
