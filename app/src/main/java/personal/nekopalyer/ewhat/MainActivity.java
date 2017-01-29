@@ -16,7 +16,10 @@ import android.widget.RadioGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import oteher.FragmentAdapter;
+import fragment.BreakfastFragment;
+import fragment.ComplexFragmentAdapter;
+import fragment.LunchFragment;
+import oteher.ItemRemoveRecyclerView;
 
 public class MainActivity extends FragmentActivity {
 
@@ -27,7 +30,7 @@ public class MainActivity extends FragmentActivity {
     private ImageView mTabLineIv;
     private BreakfastFragment mBreakfastFragment;
     private LunchFragment mLunchFragment;
-    private DinnerFragment mDinnerFragment;
+    private ItemRemoveRecyclerView.DinnerFragment mDinnerFragment;
     private int currentIndex;
     private int screenWidth;
     private static int color = Color.YELLOW;
@@ -44,7 +47,7 @@ public class MainActivity extends FragmentActivity {
     private void init() {
         mBreakfastFragment = new BreakfastFragment();
         mLunchFragment = new LunchFragment();
-        mDinnerFragment = new DinnerFragment();
+        mDinnerFragment = new ItemRemoveRecyclerView.DinnerFragment();
         mRadioGroup = (RadioGroup) findViewById(R.id.id_tab_group_rg);
         mTabBreakfastRb = (RadioButton) findViewById(R.id.id_tab_breakfast_rb);
         mTabLunchRb = (RadioButton) findViewById(R.id.id_tab_lunch_rb);
@@ -57,8 +60,8 @@ public class MainActivity extends FragmentActivity {
         mFragmentList.add(mBreakfastFragment);
         mFragmentList.add(mLunchFragment);
         mFragmentList.add(mDinnerFragment);
-        FragmentAdapter mFragmentAdapter = new FragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
-        mPageVp.setAdapter(mFragmentAdapter);
+        ComplexFragmentAdapter mComplexFragmentAdapter = new ComplexFragmentAdapter(this.getSupportFragmentManager(), mFragmentList);
+        mPageVp.setAdapter(mComplexFragmentAdapter);
 //        设定第一个界面为初始界面
         mPageVp.setCurrentItem(0);
         mTabBreakfastRb.setTextColor(color);

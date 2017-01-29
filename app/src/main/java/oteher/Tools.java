@@ -1,4 +1,4 @@
-package personal.nekopalyer.ewhat;
+package oteher;
 
 import java.util.Random;
 

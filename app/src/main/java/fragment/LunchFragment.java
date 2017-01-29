@@ -1,4 +1,4 @@
-package personal.nekopalyer.ewhat;
+package fragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -14,8 +14,11 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import personal.nekopalyer.ewhat.R;
+import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
+import oteher.Tools;
 
 /**
  * Created by 智杰 on 2016/11/9.
@@ -86,7 +89,7 @@ public class LunchFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
         context = getContext();
         mMainLayoutFl = (FrameLayout) view.findViewById(R.id.id_main_layout_fl);
         mShowTv = (TextView) view.findViewById(R.id.id_show_tv);

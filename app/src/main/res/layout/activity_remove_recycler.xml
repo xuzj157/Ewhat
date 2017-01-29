@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <oteher.ItemRemoveRecyclerView
-        android:id="@+id/id_item_remove_recyclerview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <include
+            android:id="@+id/topbar"
+            layout="@layout/view_topbar"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp" />
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <oteher.ItemRemoveRecyclerView
+                android:id="@+id/id_item_remove_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <fragment
+        android:id="@+id/fg_right_menu"
+        android:name="fragment.AddRightFragment"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:tag="RIGHT"
+        tools:layout="@layout/fragment_add_right" />
+
+
+</android.support.v4.widget.DrawerLayout>
