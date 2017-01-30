@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".MainActivity"
+            android:name=".LaunchActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RemoveRecyclerActivity" />
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
