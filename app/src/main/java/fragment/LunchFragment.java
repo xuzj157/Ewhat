@@ -3,6 +3,7 @@ package fragment;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -59,6 +60,7 @@ public class LunchFragment extends Fragment {
             animatorTextParams.leftMargin = (Tools.ram(screenWidth, 0));
             animatorTextParams.topMargin = (Tools.ram(screenHeight, 0));
             textView.setTextSize(Tools.ram(33, 20));
+            textView.setTextColor(Color.BLACK);
             textView.setLayoutParams(animatorTextParams);
             int time = Tools.ram(3000, 2000);
             textView.invalidate();
@@ -78,6 +80,7 @@ public class LunchFragment extends Fragment {
             animatorTextParams.leftMargin = (Tools.ram(screenWidth, 0));
             animatorTextParams.topMargin = (Tools.ram(screenHeight, 0));
             textView.setTextSize(Tools.ram(33, 20));
+            textView.setTextColor(Color.BLACK);
             textView.setLayoutParams(animatorTextParams);
             int time = Tools.ram(4000, 2000);
             textView.invalidate();

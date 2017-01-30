@@ -18,6 +18,7 @@ import java.util.List;
 
 import fragment.BreakfastFragment;
 import fragment.ComplexFragmentAdapter;
+import fragment.DinnerFragment;
 import fragment.LunchFragment;
 import oteher.ItemRemoveRecyclerView;
 
@@ -30,7 +31,7 @@ public class MainActivity extends FragmentActivity {
     private ImageView mTabLineIv;
     private BreakfastFragment mBreakfastFragment;
     private LunchFragment mLunchFragment;
-    private ItemRemoveRecyclerView.DinnerFragment mDinnerFragment;
+    private DinnerFragment mDinnerFragment;
     private int currentIndex;
     private int screenWidth;
     private static int color = Color.YELLOW;
@@ -47,7 +48,7 @@ public class MainActivity extends FragmentActivity {
     private void init() {
         mBreakfastFragment = new BreakfastFragment();
         mLunchFragment = new LunchFragment();
-        mDinnerFragment = new ItemRemoveRecyclerView.DinnerFragment();
+        mDinnerFragment = new DinnerFragment();
         mRadioGroup = (RadioGroup) findViewById(R.id.id_tab_group_rg);
         mTabBreakfastRb = (RadioButton) findViewById(R.id.id_tab_breakfast_rb);
         mTabLunchRb = (RadioButton) findViewById(R.id.id_tab_lunch_rb);

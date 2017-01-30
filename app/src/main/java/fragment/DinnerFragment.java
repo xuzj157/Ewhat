@@ -1,5 +1,9 @@
 package fragment;
 
+/**
+ * Created by 智杰 on 1/30/2017.
+ */
+
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
@@ -17,23 +21,27 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import oteher.Tools;
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
-import oteher.Tools;
 
 /**
  * Created by 智杰 on 2016/11/9.
- *
  */
 
-public class BreakfastFragment extends Fragment {
-    private Context context;
+public  class DinnerFragment extends Fragment {
+    Context context;
     private int screenWidth;
     private int screenHeight;
-    String[] arrFood = {"皮蛋瘦肉粥", "油条", "豆浆", "大饼", "酱香饼", "山东煎饼", "小米粥",
-            "燕麦片", "菜包子", "肉包子", "馒头", "花卷", "肉夹馍", "小笼包", "生煎", "锅贴",
-            "烧卖", "黑米粥", "烧饼", "小馄饨", "粢饭团", "水果", "粢饭糕", "手抓饼", "汉堡",
-            "豆腐花", "糕点", "糯米团", "面包", "三明治", "饭团", "蛋饼","还是要吃早饭的！"};
+    String[] arrFood = {"盖浇饭", "砂锅", "大排档", "米线", "满汉全席",
+            "西餐", "麻辣烫", "自助餐", "炒面", "快餐", "水果", "西北风",
+            "馄饨", "火锅", "烧烤", "泡面", "水饺", "日本料理", "涮羊肉",
+            "味千拉面", "面包", "扬州炒饭", "自助餐", "菜饭骨头汤",
+            "茶餐厅", "海底捞", "西贝莜面村", "披萨", "麦当劳", "KFC",
+            "汉堡王", "卡乐星", "兰州拉面", "沙县小吃", "烤鱼", "烤肉",
+            "海鲜", "铁板烧", "韩国料理", "粥", "快餐", "萨莉亚", "桂林米粉",
+            "东南亚菜", "甜点", "农家菜", "川菜", "粤菜", "湘菜", "本帮菜",
+            "全家便当", "要不不吃了。。", "真的不吃了", "真真真的不吃了"};
     private FrameLayout mMainLayoutFl;
     private TextView mShowTv;
     private ObjectAnimator Alpha;
@@ -56,19 +64,19 @@ public class BreakfastFragment extends Fragment {
             animatorTextParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
             animatorTextParams.leftMargin = (Tools.ram(screenWidth, 0));
             animatorTextParams.topMargin = (Tools.ram(screenHeight, 0));
+            textView.setTextColor(Color.BLACK);
             textView.setTextSize(Tools.ram(33, 20));
             textView.setLayoutParams(animatorTextParams);
-            int time = Tools.ram(5000, 1000);
-            textView.setTextColor(Color.BLACK);
+            int time = Tools.ram(3000, 2000);
             textView.invalidate();
             Alpha = ObjectAnimator.ofFloat(textView, "alpha", 0f, 0.6f, 0f);
-//            scale = ObjectAnimator.ofFloat(textView,"scale",1,3,1,3);
+            //            scale = ObjectAnimator.ofFloat(textView,"scale",1,3,1,3);
             Alpha.setDuration(time - 1).start();
-//            scale.setDuration(time - 1).start();
-//            animatorSet = new AnimatorSet();
-//            animatorSet.setDuration(time-1);
-//            animatorSet.play(scale).with(Alpha);
-//            animatorSet.start();
+            //            scale.setDuration(time - 1).start();
+            //            animatorSet = new AnimatorSet();
+            //            animatorSet.setDuration(time-1);
+            //            animatorSet.play(scale).with(Alpha);
+            //            animatorSet.start();
             handler.postDelayed(this, Tools.ram(300, 200));
         }
     };
@@ -83,9 +91,9 @@ public class BreakfastFragment extends Fragment {
             animatorTextParams.leftMargin = (Tools.ram(screenWidth, 0));
             animatorTextParams.topMargin = (Tools.ram(screenHeight, 0));
             textView.setTextSize(Tools.ram(33, 20));
+            textView.setTextColor(Color.BLACK);
             textView.setLayoutParams(animatorTextParams);
             int time = Tools.ram(4000, 2000);
-            textView.setTextColor(Color.BLACK);
             textView.invalidate();
             Alpha = ObjectAnimator.ofFloat(textView, "alpha", 0f, 0.6f, 0f);
             Alpha.setDuration(time - 1).start();
@@ -104,6 +112,7 @@ public class BreakfastFragment extends Fragment {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         screenHeight = dm.heightPixels - 7;
         screenWidth = dm.widthPixels - 50;
+
         mCheckTb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -118,17 +127,18 @@ public class BreakfastFragment extends Fragment {
                 }
             }
         });
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(context,RemoveRecyclerActivity.class);
+                Intent intent = new Intent(context, RemoveRecyclerActivity.class);
                 startActivity(intent);
-
-//                Toast.makeText(context, "此处为食物菜单设置功能！即将推出！\n敬请期待>_<", Toast.LENGTH_LONG).show();
+                //                Toast.makeText(context, "此处为食物菜单设置功能！即将推出！\n敬请期待>_<", Toast.LENGTH_LONG).show();
             }
         });
+
         return view;
+
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -139,3 +149,4 @@ public class BreakfastFragment extends Fragment {
         return arrFood[Tools.ram(arrFood.length, 0)];
     }
 }
+
