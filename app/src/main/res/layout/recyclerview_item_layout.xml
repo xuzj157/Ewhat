@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="63dp"
-    android:background="#FFFFFF">
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/id_item_layout"
@@ -16,17 +16,17 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="0"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/id_item_del_tv"
             android:layout_width="78dp"
             android:layout_height="match_parent"
-            android:background="#ff4444"
+            android:background="@color/pink"
             android:gravity="center"
             android:text="@string/del"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="20sp"/>
 
     </LinearLayout>
