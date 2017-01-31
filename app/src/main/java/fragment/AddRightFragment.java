@@ -23,8 +23,8 @@ public class AddRightFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_right, null);
         view.findViewById(R.id.btn_one).setOnClickListener(this);
-        view.findViewById(R.id.btn_two).setOnClickListener(this);
-        view.findViewById(R.id.btn_three).setOnClickListener(this);
+//        view.findViewById(R.id.btn_two).setOnClickListener(this);
+//        view.findViewById(R.id.btn_three).setOnClickListener(this);
         mFragmentManager = getActivity().getSupportFragmentManager();
         return view;
     }
@@ -32,14 +32,14 @@ public class AddRightFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_one:
-
+                mDrawerLayout.closeDrawer(Gravity.RIGHT);
                 break;
-            case R.id.btn_two:
-
-                break;
-            case R.id.btn_three:
-
-                break;
+//            case R.id.btn_two:
+//
+//                break;
+//            case R.id.btn_three:
+//
+//                break;
         }
     }
 

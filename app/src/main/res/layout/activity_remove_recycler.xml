@@ -14,8 +14,8 @@
         <include
             android:id="@+id/topbar"
             layout="@layout/view_topbar"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp" />
+            android:layout_width="match_parent"
+            android:layout_height="49dp" />
 
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/fg_right_menu"
         android:name="fragment.AddRightFragment"
-        android:layout_width="100dp"
+        android:layout_width="290dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:tag="RIGHT"

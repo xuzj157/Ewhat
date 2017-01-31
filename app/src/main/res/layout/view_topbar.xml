@@ -2,8 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#DCDEDB"
-    android:padding="12dp">
+    android:background="@color/white"
+    android:paddingStart="11dp"
+    android:paddingTop="11dp"
+    android:paddingEnd="11dp">
 
     <Button
         android:id="@+id/btn_back"
@@ -16,10 +18,15 @@
 
     <Button
         android:id="@+id/btn_right"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/btn_selctor"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_1"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

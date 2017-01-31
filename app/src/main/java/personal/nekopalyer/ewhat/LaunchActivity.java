@@ -20,7 +20,7 @@ public class LaunchActivity extends AppCompatActivity {
                 startActivity(new Intent(LaunchActivity.this,MainActivity.class));
                 LaunchActivity.this.finish();
             }
-        },3000);
+        },1000);
 
     }
 }
