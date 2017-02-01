@@ -1,5 +1,7 @@
 package oteher;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -14,6 +16,11 @@ public class Tools {
         int s;
         s = random.nextInt(max) % (max - min + 1) + min;
         return s;
+    }
+
+    public static List<String> Array2list( String[] s ){
+        List<String> sl = Arrays.asList(s);
+        return sl;
     }
 
 

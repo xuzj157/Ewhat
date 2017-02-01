@@ -16,10 +16,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 import oteher.Tools;
+
 
 /**
  * Created by 智杰 on 2016/11/9.
