@@ -7,6 +7,7 @@ package fragment;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+
+import oteher.DbHelper;
 import oteher.Tools;
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
@@ -31,21 +35,25 @@ import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 
 public  class DinnerFragment extends Fragment {
     Context context;
+    private DbHelper dbHelper;
     private int screenWidth;
     private int screenHeight;
-    String[] arrFood = {"盖浇饭", "砂锅", "大排档", "米线", "满汉全席",
-            "西餐", "麻辣烫", "自助餐", "炒面", "快餐", "水果", "西北风",
-            "馄饨", "火锅", "烧烤", "泡面", "水饺", "日本料理", "涮羊肉",
-            "味千拉面", "面包", "扬州炒饭", "自助餐", "菜饭骨头汤",
-            "茶餐厅", "海底捞", "西贝莜面村", "披萨", "麦当劳", "KFC",
-            "汉堡王", "卡乐星", "兰州拉面", "沙县小吃", "烤鱼", "烤肉",
-            "海鲜", "铁板烧", "韩国料理", "粥", "快餐", "萨莉亚", "桂林米粉",
-            "东南亚菜", "甜点", "农家菜", "川菜", "粤菜", "湘菜", "本帮菜",
-            "全家便当", "要不不吃了。。", "真的不吃了", "真真真的不吃了"};
+//    String[] arrFood = {"盖浇饭", "砂锅", "大排档", "米线", "满汉全席",
+//            "西餐", "麻辣烫", "自助餐", "炒面", "快餐", "水果", "西北风",
+//            "馄饨", "火锅", "烧烤", "泡面", "水饺", "日本料理", "涮羊肉",
+//            "味千拉面", "面包", "扬州炒饭", "自助餐", "菜饭骨头汤",
+//            "茶餐厅", "海底捞", "西贝莜面村", "披萨", "麦当劳", "KFC",
+//            "汉堡王", "卡乐星", "兰州拉面", "沙县小吃", "烤鱼", "烤肉",
+//            "海鲜", "铁板烧", "韩国料理", "粥", "快餐", "萨莉亚", "桂林米粉",
+//            "东南亚菜", "甜点", "农家菜", "川菜", "粤菜", "湘菜", "本帮菜",
+//            "全家便当", "要不不吃了。。", "真的不吃了", "真真真的不吃了"};
+
+    private ArrayList<String> listFood = new ArrayList<>();
     private FrameLayout mMainLayoutFl;
     private TextView mShowTv;
     private ObjectAnimator Alpha;
     private FrameLayout.LayoutParams animatorTextParams;
+    private final String SELECT_FOOD = "select food_name from food where kind = ?";
     private Handler handler = new Handler();
     Runnable runSetText = new Runnable() {
         @Override
@@ -87,6 +95,7 @@ public  class DinnerFragment extends Fragment {
             TextView textView = new TextView(context);
             mMainLayoutFl.addView(textView);
             textView.setText(randomFood());
+            dbHelper = new DbHelper(context,"food.db3",1);
             animatorTextParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
             animatorTextParams.leftMargin = (Tools.ram(screenWidth, 0));
             animatorTextParams.topMargin = (Tools.ram(screenHeight, 0));
@@ -105,6 +114,7 @@ public  class DinnerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         context = getContext();
+        dbHelper = new DbHelper(context,"food.db3",1);
         mMainLayoutFl = (FrameLayout) view.findViewById(R.id.id_main_layout_fl);
         mShowTv = (TextView) view.findViewById(R.id.id_show_tv);
         ToggleButton mCheckTb = (ToggleButton) view.findViewById(R.id.id_click_tb);
@@ -117,6 +127,10 @@ public  class DinnerFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_FOOD,new String[]{"3"});
+                    while(cursor.moveToNext()){
+                        listFood.add(cursor.getString(0));
+                    }
                     handler.post(runSetText);
                     handler.post(runSetAnimationFirst);
                     handler.post(runSetAnimationSecond);
@@ -146,7 +160,7 @@ public  class DinnerFragment extends Fragment {
     }
 
     private String randomFood() {
-        return arrFood[Tools.ram(arrFood.length, 0)];
+        return listFood.get(Tools.ram(listFood.size(), 0));
     }
 }
 

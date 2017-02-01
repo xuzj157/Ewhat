@@ -17,10 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import oteher.DbHelper;
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
@@ -41,13 +38,12 @@ public class BreakfastFragment extends Fragment {
 //            "燕麦片", "菜包子", "肉包子", "馒头", "花卷", "肉夹馍", "小笼包", "生煎", "锅贴",
 //            "烧卖", "黑米粥", "烧饼", "小馄饨", "粢饭团", "水果", "粢饭糕", "手抓饼", "汉堡",
 //            "豆腐花", "糕点", "糯米团", "面包", "三明治", "饭团", "蛋饼","还是要吃早饭的！"};
-    private String[] arrFood;
     private ArrayList<String> listFood = new ArrayList<>();
     private FrameLayout mMainLayoutFl;
     private TextView mShowTv;
     private ObjectAnimator Alpha;
     private FrameLayout.LayoutParams animatorTextParams;
-    private final String SELECT_BREAKFAST = "select food_name from food where kind = ?";
+    private final String SELECT_FOOD = "select food_name from food where kind = ?";
 
     private Handler handler = new Handler();
     Runnable runSetText = new Runnable() {
@@ -122,7 +118,7 @@ public class BreakfastFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_BREAKFAST,new String[]{"1"});
+                    Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_FOOD,new String[]{"1"});
                     while(cursor.moveToNext()){
                         listFood.add(cursor.getString(0));
                     }
