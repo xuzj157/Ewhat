@@ -3,6 +3,7 @@ package fragment;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import oteher.DbHelper;
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 import oteher.Tools;
@@ -28,16 +34,21 @@ import oteher.Tools;
 
 public class BreakfastFragment extends Fragment {
     private Context context;
+    private DbHelper dbHelper;
     private int screenWidth;
     private int screenHeight;
-    String[] arrFood = {"皮蛋瘦肉粥", "油条", "豆浆", "大饼", "酱香饼", "山东煎饼", "小米粥",
-            "燕麦片", "菜包子", "肉包子", "馒头", "花卷", "肉夹馍", "小笼包", "生煎", "锅贴",
-            "烧卖", "黑米粥", "烧饼", "小馄饨", "粢饭团", "水果", "粢饭糕", "手抓饼", "汉堡",
-            "豆腐花", "糕点", "糯米团", "面包", "三明治", "饭团", "蛋饼","还是要吃早饭的！"};
+//    String[] arrFood = {"皮蛋瘦肉粥", "油条", "豆浆", "大饼", "酱香饼", "山东煎饼", "小米粥",
+//            "燕麦片", "菜包子", "肉包子", "馒头", "花卷", "肉夹馍", "小笼包", "生煎", "锅贴",
+//            "烧卖", "黑米粥", "烧饼", "小馄饨", "粢饭团", "水果", "粢饭糕", "手抓饼", "汉堡",
+//            "豆腐花", "糕点", "糯米团", "面包", "三明治", "饭团", "蛋饼","还是要吃早饭的！"};
+    private String[] arrFood;
+    private ArrayList<String> listFood = new ArrayList<>();
     private FrameLayout mMainLayoutFl;
     private TextView mShowTv;
     private ObjectAnimator Alpha;
     private FrameLayout.LayoutParams animatorTextParams;
+    private final String SELECT_BREAKFAST = "select food_name from food where kind = ?";
+
     private Handler handler = new Handler();
     Runnable runSetText = new Runnable() {
         @Override
@@ -52,6 +63,7 @@ public class BreakfastFragment extends Fragment {
         public void run() {
             TextView textView = new TextView(context);
             mMainLayoutFl.addView(textView);
+
             textView.setText(randomFood());
             animatorTextParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
             animatorTextParams.leftMargin = (Tools.ram(screenWidth, 0));
@@ -97,6 +109,7 @@ public class BreakfastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         context = getContext();
+        dbHelper = new DbHelper(context,"food.db3",1);
         mMainLayoutFl = (FrameLayout) view.findViewById(R.id.id_main_layout_fl);
         mShowTv = (TextView) view.findViewById(R.id.id_show_tv);
         ToggleButton mCheckTb = (ToggleButton) view.findViewById(R.id.id_click_tb);
@@ -104,10 +117,15 @@ public class BreakfastFragment extends Fragment {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         screenHeight = dm.heightPixels - 7;
         screenWidth = dm.widthPixels - 50;
+
         mCheckTb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_BREAKFAST,new String[]{"1"});
+                    while(cursor.moveToNext()){
+                        listFood.add(cursor.getString(0));
+                    }
                     handler.post(runSetText);
                     handler.post(runSetAnimationFirst);
                     handler.post(runSetAnimationSecond);
@@ -136,6 +154,6 @@ public class BreakfastFragment extends Fragment {
     }
 
     private String randomFood() {
-        return arrFood[Tools.ram(arrFood.length, 0)];
+        return listFood.get(Tools.ram(listFood.size(), 0));
     }
 }
