@@ -9,9 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-
 import java.util.ArrayList;
-
 import fragment.AddRightFragment;
 import oteher.DbHelper;
 import oteher.ItemRemoveRecyclerView;
@@ -28,7 +26,7 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
     private View topbar;
     private Button btn_right;
     private Button btn_back;
-    private AddRightFragment fg_right_menu;
+    private AddRightFragment mAddRightFg = new AddRightFragment();
     private FragmentManager fManager;
     private DbHelper dbHelper;
     private Intent intent;
@@ -39,7 +37,8 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove_recycler);
-        fManager = getSupportFragmentManager();
+
+
 
         initViews();
 
@@ -78,15 +77,23 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
 
     private void initViews() {
         recyclerView = (ItemRemoveRecyclerView) findViewById(R.id.id_item_remove_recyclerview);
-        fg_right_menu = (AddRightFragment) fManager.findFragmentById(R.id.fg_right_menu);
+        fManager = getSupportFragmentManager();
+        intent = getIntent();
+        kind = (Integer) intent.getSerializableExtra("kind");
+//        Bundle bundle = new Bundle();
+//        bundle.putInt("kind",kind);
         drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        mAddRightFg.setArguments(bundle);
+        mAddRightFg = (AddRightFragment) fManager.findFragmentById(R.id.fg_right_menu);
+
         topbar = findViewById(R.id.topbar);
         btn_right = (Button) topbar.findViewById(R.id.btn_right);
         btn_right.setOnClickListener(this);
         btn_back = (Button) topbar.findViewById(R.id.btn_back);
 
-        intent = getIntent();
-        kind = (Integer) intent.getSerializableExtra("kind");
+
+
+
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,13 +131,17 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
             }
         });
 
-        fg_right_menu.setDrawerLayout(drawer_layout);
+        mAddRightFg.setDrawerLayout(drawer_layout);
     }
 
     public void onClick(View v) {
+
         drawer_layout.openDrawer(Gravity.RIGHT);
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED,
                 Gravity.RIGHT);    //解除锁定
+
+
+
     }
 
 }

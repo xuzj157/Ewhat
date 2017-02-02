@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import personal.nekopalyer.ewhat.R;
 
@@ -18,31 +20,32 @@ import personal.nekopalyer.ewhat.R;
 public class AddRightFragment extends Fragment implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
-    private FragmentManager mFragmentManager;
+    private EditText mAddEt;
+    private final String ADD_FOOD = "insert food values (null,?,?)";
+//    private FragmentManager mFragmentManager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_right, null);
-        view.findViewById(R.id.btn_one).setOnClickListener(this);
-//        view.findViewById(R.id.btn_two).setOnClickListener(this);
-//        view.findViewById(R.id.btn_three).setOnClickListener(this);
-        mFragmentManager = getActivity().getSupportFragmentManager();
+        view.findViewById(R.id.id_add_bt).setOnClickListener(this);
+        mAddEt = (EditText) view.findViewById(R.id.id_add_et);
+//        mFragmentManager = getActivity().getSupportFragmentManager();
         return view;
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_one:
+            case R.id.id_add_bt:
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
+//                int s = getArguments().getInt("kind");
+//                mAddEt.setText(s);
                 break;
-//            case R.id.btn_two:
-//
-//                break;
-//            case R.id.btn_three:
-//
-//                break;
         }
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
 
     public void setDrawerLayout(DrawerLayout drawer_layout) {
         this.mDrawerLayout = drawer_layout;
