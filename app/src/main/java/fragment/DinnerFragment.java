@@ -7,7 +7,6 @@ package fragment;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,11 +28,13 @@ import oteher.Tools;
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 
+import static oteher.Tools.intoList;
+
 /**
  * Created by 智杰 on 2016/11/9.
  */
 
-public  class DinnerFragment extends Fragment {
+public class DinnerFragment extends Fragment {
     Context context;
     private DbHelper dbHelper;
     private int screenWidth;
@@ -48,7 +49,7 @@ public  class DinnerFragment extends Fragment {
 //            "东南亚菜", "甜点", "农家菜", "川菜", "粤菜", "湘菜", "本帮菜",
 //            "全家便当", "要不不吃了。。", "真的不吃了", "真真真的不吃了"};
 
-    private ArrayList<String> listFood = new ArrayList<>();
+    private ArrayList<String> mListFood = new ArrayList<>();
     private FrameLayout mMainLayoutFl;
     private TextView mShowTv;
     private ObjectAnimator Alpha;
@@ -95,7 +96,7 @@ public  class DinnerFragment extends Fragment {
             TextView textView = new TextView(context);
             mMainLayoutFl.addView(textView);
             textView.setText(randomFood());
-            dbHelper = new DbHelper(context,"food.db3",1);
+            dbHelper = new DbHelper(context, "food.db3", 1);
             animatorTextParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
             animatorTextParams.leftMargin = (Tools.ram(screenWidth, 0));
             animatorTextParams.topMargin = (Tools.ram(screenHeight, 0));
@@ -114,7 +115,7 @@ public  class DinnerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         context = getContext();
-        dbHelper = new DbHelper(context,"food.db3",1);
+        dbHelper = new DbHelper(context, "food.db3", 1);
         mMainLayoutFl = (FrameLayout) view.findViewById(R.id.id_main_layout_fl);
         mShowTv = (TextView) view.findViewById(R.id.id_show_tv);
         ToggleButton mCheckTb = (ToggleButton) view.findViewById(R.id.id_click_tb);
@@ -127,10 +128,9 @@ public  class DinnerFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_FOOD,new String[]{"3"});
-                    while(cursor.moveToNext()){
-                        listFood.add(cursor.getString(0));
-                    }
+
+                    mListFood = intoList(3,dbHelper);
+
                     handler.post(runSetText);
                     handler.post(runSetAnimationFirst);
                     handler.post(runSetAnimationSecond);
@@ -145,7 +145,10 @@ public  class DinnerFragment extends Fragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle kind = new Bundle();
+                kind.putSerializable("kind", 3);
                 Intent intent = new Intent(context, RemoveRecyclerActivity.class);
+                intent.putExtras(kind);
                 startActivity(intent);
                 //                Toast.makeText(context, "此处为食物菜单设置功能！即将推出！\n敬请期待>_<", Toast.LENGTH_LONG).show();
             }
@@ -160,7 +163,7 @@ public  class DinnerFragment extends Fragment {
     }
 
     private String randomFood() {
-        return listFood.get(Tools.ram(listFood.size(), 0));
+        return mListFood.get(Tools.ram(mListFood.size(), 0));
     }
 }
 

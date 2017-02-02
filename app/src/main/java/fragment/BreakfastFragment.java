@@ -3,7 +3,6 @@ package fragment;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +22,8 @@ import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 import oteher.Tools;
 
+import static oteher.Tools.intoList;
+
 
 /**
  * Created by 智杰 on 2016/11/9.
@@ -38,7 +39,7 @@ public class BreakfastFragment extends Fragment {
 //            "燕麦片", "菜包子", "肉包子", "馒头", "花卷", "肉夹馍", "小笼包", "生煎", "锅贴",
 //            "烧卖", "黑米粥", "烧饼", "小馄饨", "粢饭团", "水果", "粢饭糕", "手抓饼", "汉堡",
 //            "豆腐花", "糕点", "糯米团", "面包", "三明治", "饭团", "蛋饼","还是要吃早饭的！"};
-    private ArrayList<String> listFood = new ArrayList<>();
+    private ArrayList<String> mListFood = new ArrayList<>();
     private FrameLayout mMainLayoutFl;
     private TextView mShowTv;
     private ObjectAnimator Alpha;
@@ -118,10 +119,7 @@ public class BreakfastFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_FOOD,new String[]{"1"});
-                    while(cursor.moveToNext()){
-                        listFood.add(cursor.getString(0));
-                    }
+                    mListFood = intoList(1,dbHelper);
                     handler.post(runSetText);
                     handler.post(runSetAnimationFirst);
                     handler.post(runSetAnimationSecond);
@@ -135,21 +133,23 @@ public class BreakfastFragment extends Fragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Bundle kind = new Bundle();
+                kind.putSerializable("kind",1);
                 Intent intent = new Intent(context,RemoveRecyclerActivity.class);
+                intent.putExtras(kind);
                 startActivity(intent);
-
 //                Toast.makeText(context, "此处为食物菜单设置功能！即将推出！\n敬请期待>_<", Toast.LENGTH_LONG).show();
             }
         });
         return view;
     }
 
+
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
 
     private String randomFood() {
-        return listFood.get(Tools.ram(listFood.size(), 0));
+        return mListFood.get(Tools.ram(mListFood.size(), 0));
     }
 }

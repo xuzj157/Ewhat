@@ -3,7 +3,6 @@ package fragment;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import oteher.DbHelper;
@@ -26,8 +24,9 @@ import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 import oteher.Tools;
 
+import static oteher.Tools.intoList;
+
 /**
- *
  * Created by 智杰 on 2016/11/9.
  */
 
@@ -37,13 +36,13 @@ public class LunchFragment extends Fragment {
     private DbHelper dbHelper;
     private int screenWidth;
     private int screenHeight;
-//    String[] arrFood = {
+    //    String[] arrFood = {
 //            "盖浇饭", "砂锅", "麻辣烫", "千里香馄饨", "炒面", "汤面", "排骨年糕", "味千拉面",
 //            "肯德基", "麦当劳", "麻辣香锅", "牛肉拉面", "牛肉泡馍", "黄焖鸡米饭", "过桥米线",
 //            "桂林米粉", "骨头菜饭", "炸酱面", "石锅拌饭", "避风塘", "吉祥馄饨", "浏阳蒸菜",
 //            "萨利亚", "煲仔饭", "炸鸡", "老鸭粉丝汤", "日式牛肉盖饭", "酸辣粉", "寿司",
 //            "全家便当", "喜士多", "炒饭", "热干面","我好胖。。","我真的好胖。。","我真的还吃吗","心情不好"};
-    private ArrayList<String> listFood = new ArrayList<>();
+    private ArrayList<String> mListFood = new ArrayList<>();
     private FrameLayout mMainLayoutFl;
     private TextView mShowTv;
     private ObjectAnimator Alpha;
@@ -103,7 +102,7 @@ public class LunchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         context = getContext();
-        dbHelper = new DbHelper(context,"food.db3",1);
+        dbHelper = new DbHelper(context, "food.db3", 1);
         mMainLayoutFl = (FrameLayout) view.findViewById(R.id.id_main_layout_fl);
         mShowTv = (TextView) view.findViewById(R.id.id_show_tv);
         ToggleButton mCheckTb = (ToggleButton) view.findViewById(R.id.id_click_tb);
@@ -116,10 +115,7 @@ public class LunchFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_FOOD,new String[]{"2"});
-                    while(cursor.moveToNext()){
-                        listFood.add(cursor.getString(0));
-                    }
+                    mListFood = intoList(2,dbHelper);
                     handler.post(runSetText);
                     handler.post(runSetAnimationFirst);
                     handler.post(runSetAnimationSecond);
@@ -135,7 +131,10 @@ public class LunchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context,RemoveRecyclerActivity.class);
+                Bundle kind = new Bundle();
+                kind.putSerializable("kind", 2);
+                Intent intent = new Intent(context, RemoveRecyclerActivity.class);
+                intent.putExtras(kind);
                 startActivity(intent);
 //                Toast.makeText(context, "此处为食物菜单设置功能！即将推出！\n敬请期待>_<", Toast.LENGTH_LONG).show();
             }
@@ -150,7 +149,7 @@ public class LunchFragment extends Fragment {
     }
 
     private String randomFood() {
-        return listFood.get(Tools.ram(listFood.size(), 0));
+        return mListFood.get(Tools.ram(mListFood.size(), 0));
     }
 
 }

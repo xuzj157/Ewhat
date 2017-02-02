@@ -13,20 +13,26 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 import fragment.AddRightFragment;
+import oteher.DbHelper;
 import oteher.ItemRemoveRecyclerView;
 import oteher.OnItemClickListener;
 import oteher.RemoveRecyclerItemAdapter;
 
-public class RemoveRecyclerActivity extends AppCompatActivity implements View.OnClickListener{
+import static oteher.Tools.intoList;
+
+public class RemoveRecyclerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ItemRemoveRecyclerView recyclerView;
-    private ArrayList<String> mList;
+    private ArrayList<String> mListFood;
     private DrawerLayout drawer_layout;
     private View topbar;
     private Button btn_right;
     private Button btn_back;
     private AddRightFragment fg_right_menu;
     private FragmentManager fManager;
+    private DbHelper dbHelper;
+    private Intent intent;
+    private int kind;
 
 
     @Override
@@ -34,18 +40,24 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove_recycler);
         fManager = getSupportFragmentManager();
-        fg_right_menu = (AddRightFragment) fManager.findFragmentById(R.id.fg_right_menu);
+
         initViews();
 
-
-        recyclerView = (ItemRemoveRecyclerView) findViewById(R.id.id_item_remove_recyclerview);
-
-        mList = new ArrayList<>();
-        for(int i = 0;i < 50;i++){
-            mList.add(i+"");
+        dbHelper = new DbHelper(this, "food.db3", 1);
+        mListFood = new ArrayList<>();
+        switch (kind) {
+            case 1:
+                mListFood = intoList(1, dbHelper);
+                break;
+            case 2:
+                mListFood = intoList(2, dbHelper);
+                break;
+            case 3:
+                mListFood = intoList(3, dbHelper);
+                break;
         }
 
-        final RemoveRecyclerItemAdapter adapter = new RemoveRecyclerItemAdapter(this,mList);
+        final RemoveRecyclerItemAdapter adapter = new RemoveRecyclerItemAdapter(this, mListFood);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -61,22 +73,26 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
             }
         });
 
-
     }
 
 
     private void initViews() {
+        recyclerView = (ItemRemoveRecyclerView) findViewById(R.id.id_item_remove_recyclerview);
+        fg_right_menu = (AddRightFragment) fManager.findFragmentById(R.id.fg_right_menu);
         drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
         topbar = findViewById(R.id.topbar);
         btn_right = (Button) topbar.findViewById(R.id.btn_right);
         btn_right.setOnClickListener(this);
-        btn_back = (Button)topbar.findViewById(R.id.btn_back);
+        btn_back = (Button) topbar.findViewById(R.id.btn_back);
+
+        intent = getIntent();
+        kind = (Integer) intent.getSerializableExtra("kind");
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(RemoveRecyclerActivity.this,MainActivity.class);
+                Intent intent = new Intent(RemoveRecyclerActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -116,4 +132,5 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED,
                 Gravity.RIGHT);    //解除锁定
     }
+
 }

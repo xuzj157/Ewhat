@@ -11,7 +11,7 @@ import personal.nekopalyer.ewhat.R;
  * Created by 智杰 on 1/23/2017.
  */
 
-public class RemoveRecyclerViewHolder extends RecyclerView.ViewHolder{
+public class RemoveRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     public TextView contentTv;
     public TextView delTv;
@@ -20,9 +20,9 @@ public class RemoveRecyclerViewHolder extends RecyclerView.ViewHolder{
     public RemoveRecyclerViewHolder(View itemView) {
         super(itemView);
 
-        contentTv = (TextView)itemView.findViewById(R.id.id_item_content_tv);
-        delTv = (TextView)itemView.findViewById(R.id.id_item_del_tv);
-        layout = (LinearLayout)itemView.findViewById(R.id.id_item_layout);
+        contentTv = (TextView) itemView.findViewById(R.id.id_item_content_tv);
+        delTv = (TextView) itemView.findViewById(R.id.id_item_del_tv);
+        layout = (LinearLayout) itemView.findViewById(R.id.id_item_layout);
 
     }
 }

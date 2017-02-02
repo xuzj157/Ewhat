@@ -29,7 +29,6 @@ import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 
 /**
- *
  * Created by 智杰 on 1/23/2017.
  */
 

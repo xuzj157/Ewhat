@@ -56,6 +56,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(CREATE_TABLE_SQL);
         db.execSQL(INSERT_FOOD_SQL_BREAKFAST);
         db.execSQL(INSERT_FOOD_SQL_LUNCH);

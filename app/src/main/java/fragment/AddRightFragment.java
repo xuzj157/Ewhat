@@ -15,7 +15,7 @@ import personal.nekopalyer.ewhat.R;
  * Created by 智杰 on 1/29/2017.
  */
 
-public class AddRightFragment extends Fragment implements View.OnClickListener{
+public class AddRightFragment extends Fragment implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private FragmentManager mFragmentManager;
@@ -30,7 +30,7 @@ public class AddRightFragment extends Fragment implements View.OnClickListener{
     }
 
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_one:
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
                 break;
@@ -44,7 +44,7 @@ public class AddRightFragment extends Fragment implements View.OnClickListener{
     }
 
 
-    public void setDrawerLayout(DrawerLayout drawer_layout){
+    public void setDrawerLayout(DrawerLayout drawer_layout) {
         this.mDrawerLayout = drawer_layout;
     }
 

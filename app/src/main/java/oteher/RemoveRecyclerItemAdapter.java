@@ -19,7 +19,7 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
     private LayoutInflater mInflater;
     ArrayList<String> mList;
 
-    public RemoveRecyclerItemAdapter(Context context, ArrayList<String> list){
+    public RemoveRecyclerItemAdapter(Context context, ArrayList<String> list) {
         mContext = context;
         mList = list;
         mInflater = LayoutInflater.from(context);
@@ -28,7 +28,7 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RemoveRecyclerViewHolder(mInflater.inflate(R.layout.recyclerview_item_layout,parent,false));
+        return new RemoveRecyclerViewHolder(mInflater.inflate(R.layout.recyclerview_item_layout, parent, false));
     }
 
     @Override
@@ -41,7 +41,8 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return mList != null ? mList.size() : 0;
     }
-    public void removeItem(int position){
+
+    public void removeItem(int position) {
         mList.remove(position);
         notifyDataSetChanged();
     }
