@@ -1,7 +1,9 @@
 package personal.nekopalyer.ewhat;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+//import android.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import fragment.AddRightFragment;
 import oteher.DbHelper;
@@ -31,7 +35,8 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
     private DbHelper dbHelper;
     private Intent intent;
     private int kind;
-
+    private FragmentTransaction fragmentTransaction;
+    private TextView mTopBarTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +52,15 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         switch (kind) {
             case 1:
                 mListFood = intoList(1, dbHelper);
+                mTopBarTv.setText("早餐");
                 break;
             case 2:
                 mListFood = intoList(2, dbHelper);
+                mTopBarTv.setText("午餐");
                 break;
             case 3:
                 mListFood = intoList(3, dbHelper);
+                mTopBarTv.setText("晚餐");
                 break;
         }
 
@@ -77,28 +85,24 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
 
     private void initViews() {
         recyclerView = (ItemRemoveRecyclerView) findViewById(R.id.id_item_remove_recyclerview);
-        fManager = getSupportFragmentManager();
+
         intent = getIntent();
         kind = (Integer) intent.getSerializableExtra("kind");
-//        Bundle bundle = new Bundle();
-//        bundle.putInt("kind",kind);
-        drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        mAddRightFg.setArguments(bundle);
+        mTopBarTv = (TextView) findViewById(R.id.id_topbar_tv);
+        fManager = getSupportFragmentManager();
+
         mAddRightFg = (AddRightFragment) fManager.findFragmentById(R.id.fg_right_menu);
+
+        drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         topbar = findViewById(R.id.topbar);
         btn_right = (Button) topbar.findViewById(R.id.btn_right);
         btn_right.setOnClickListener(this);
         btn_back = (Button) topbar.findViewById(R.id.btn_back);
 
-
-
-
-
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(RemoveRecyclerActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -139,8 +143,6 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         drawer_layout.openDrawer(Gravity.RIGHT);
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED,
                 Gravity.RIGHT);    //解除锁定
-
-
 
     }
 

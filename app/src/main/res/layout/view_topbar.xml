@@ -16,6 +16,16 @@
         android:layout_alignParentLeft="true"
         />
 
+    <TextView
+        android:gravity="center"
+        android:id="@+id/id_topbar_tv"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="111"
+        android:textColor="@color/black"
+        android:textSize="24sp"/>
+
     <Button
         android:id="@+id/btn_right"
         android:layout_width="27dp"

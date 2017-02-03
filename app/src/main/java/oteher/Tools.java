@@ -30,9 +30,15 @@ public class Tools {
         ArrayList<String> listFood = new ArrayList<>();
         String SELECT_FOOD = "select food_name from food where kind = ? ";
         Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_FOOD, new String[]{Integer.toString(k)});
-        while(cursor.moveToNext()){
-            listFood.add(cursor.getString(0));
+        if(cursor != null){
+            while(cursor.moveToNext()){
+                listFood.add(cursor.getString(0));
+            }
+        }else {
+            listFood.add("您未添加食品或店铺名");
+            listFood.add("请进入添加界面添加");
         }
+
         return listFood;
 
     }
