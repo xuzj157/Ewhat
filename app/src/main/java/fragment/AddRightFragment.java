@@ -48,6 +48,7 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         //检验是否为空，trim()去除两边空格
         int i = mAddEt.getText().toString().trim().length();
+
         if(i != 0){
             String s = mAddEt.getText().toString();
             if(mBreakfastRb.isChecked()){
