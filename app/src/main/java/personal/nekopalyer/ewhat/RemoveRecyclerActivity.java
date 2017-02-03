@@ -1,10 +1,9 @@
 package personal.nekopalyer.ewhat;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
-//import android.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,20 +11,20 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.ArrayList;
+import java.util.Map;
 import fragment.AddRightFragment;
 import oteher.DbHelper;
 import oteher.ItemRemoveRecyclerView;
 import oteher.OnItemClickListener;
 import oteher.RemoveRecyclerItemAdapter;
+import static oteher.Tools.intoMap;
 
-import static oteher.Tools.intoList;
 
 public class RemoveRecyclerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ItemRemoveRecyclerView recyclerView;
-    private ArrayList<String> mListFood;
+    private ArrayList<Map<String,String>> mListFood;
     private DrawerLayout drawer_layout;
     private View topbar;
     private Button btn_right;
@@ -35,34 +34,34 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
     private DbHelper dbHelper;
     private Intent intent;
     private int kind;
-    private FragmentTransaction fragmentTransaction;
     private TextView mTopBarTv;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove_recycler);
 
-
-
         initViews();
 
         dbHelper = new DbHelper(this, "food.db3", 1);
         mListFood = new ArrayList<>();
-        switch (kind) {
-            case 1:
-                mListFood = intoList(1, dbHelper);
-                mTopBarTv.setText("早餐");
-                break;
-            case 2:
-                mListFood = intoList(2, dbHelper);
-                mTopBarTv.setText("午餐");
-                break;
-            case 3:
-                mListFood = intoList(3, dbHelper);
-                mTopBarTv.setText("晚餐");
-                break;
-        }
+//        switch (kind) {
+//            case 1:
+//                mListFood = intoMap(1, dbHelper);
+//                mTopBarTv.setText("早餐");
+//                break;
+//            case 2:
+//                mListFood = intoMap(2, dbHelper);
+//                mTopBarTv.setText("午餐");
+//                break;
+//            case 3:
+//                mListFood = intoMap(3, dbHelper);
+//                mTopBarTv.setText("晚餐");
+//                break;
+//        }
+
+        intoListFood();
 
         final RemoveRecyclerItemAdapter adapter = new RemoveRecyclerItemAdapter(this, mListFood);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,12 +70,24 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         recyclerView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                //现在没什么用处的
             }
 
             @Override
             public void onDeleteClick(int position) {
-                adapter.removeItem(position);
+
+                adapter.removeItem(position,dbHelper);
+
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                intoListFood();
+                adapter.refreshData(mListFood);
+                adapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
@@ -100,6 +111,8 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         btn_right.setOnClickListener(this);
         btn_back = (Button) topbar.findViewById(R.id.btn_back);
 
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.remove_sl);
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +120,8 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
                 startActivity(intent);
             }
         });
+
+
 
         //设置右面的侧滑菜单只能通过编程来打开
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED,
@@ -144,6 +159,23 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED,
                 Gravity.RIGHT);    //解除锁定
 
+    }
+
+    private void intoListFood(){
+        switch (kind) {
+            case 1:
+                mListFood = intoMap(1, dbHelper);
+                mTopBarTv.setText("早餐");
+                break;
+            case 2:
+                mListFood = intoMap(2, dbHelper);
+                mTopBarTv.setText("午餐");
+                break;
+            case 3:
+                mListFood = intoMap(3, dbHelper);
+                mTopBarTv.setText("晚餐");
+                break;
+        }
     }
 
 }

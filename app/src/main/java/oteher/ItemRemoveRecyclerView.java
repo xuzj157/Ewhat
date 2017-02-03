@@ -1,32 +1,19 @@
 package oteher;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
-import android.widget.CompoundButton;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
-
 import personal.nekopalyer.ewhat.R;
-import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 
 /**
  * Created by 智杰 on 1/23/2017.
@@ -47,7 +34,6 @@ public class ItemRemoveRecyclerView extends RecyclerView {
     private VelocityTracker mVelocityTracker;
     private Scroller mScroller;
     private OnItemClickListener mListener;
-
 
     public ItemRemoveRecyclerView(Context context) {
         this(context, null);
@@ -198,7 +184,7 @@ public class ItemRemoveRecyclerView extends RecyclerView {
 
     public void newToast(int num) {
 
-        Toast.makeText(mContext, "**" + num + "**", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "成功删除", Toast.LENGTH_SHORT).show();
 
     }
 

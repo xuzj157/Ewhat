@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,10 +46,9 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-
-
-
-        if(mAddEt.getText() != null){
+        //检验是否为空，trim()去除两边空格
+        int i = mAddEt.getText().toString().trim().length();
+        if(i != 0){
             String s = mAddEt.getText().toString();
             if(mBreakfastRb.isChecked()){
                 insertFood(s,1);
@@ -66,7 +66,8 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
                 mAddEt.setText(null);
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
             }else{
-                mAddEt.setText("none");
+                newToast("您没有选择就餐类型");
+                mDrawerLayout.closeDrawer(Gravity.RIGHT);
             }
         }else{
             newToast("你不能什么都不告诉我！");

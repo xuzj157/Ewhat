@@ -4,7 +4,9 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -41,6 +43,30 @@ public class Tools {
 
         return listFood;
 
+    }
+
+    public static ArrayList<Map<String,String>> intoMap(int k,DbHelper dbHelper){
+
+        ArrayList<Map<String,String>> result = new ArrayList<>();
+        String SELECT_FOOD = "select * from food where kind = ? ";
+        Cursor cursor = dbHelper.getReadableDatabase().rawQuery(SELECT_FOOD, new String[]{Integer.toString(k)});
+        if (cursor != null){
+            while(cursor.moveToNext()){
+                Map<String,String> mapFood = new HashMap<>();
+
+                mapFood.put("id",cursor.getString(0));
+                mapFood.put("food_name",cursor.getString(1));
+
+                result.add(mapFood);
+            }
+        }else return null;
+        return result;
+    }
+
+    public static boolean delFood(String id,DbHelper dbHelper){
+        String DELETE_FOOD = "delete from food where id = " + id;
+        dbHelper.getReadableDatabase().execSQL(DELETE_FOOD);
+        return true;
     }
 
 }

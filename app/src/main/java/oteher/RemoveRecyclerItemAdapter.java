@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import personal.nekopalyer.ewhat.R;
+
+import static oteher.Tools.delFood;
 
 /**
  * Created by 智杰 on 1/23/2017.
@@ -17,9 +21,9 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
-    ArrayList<String> mList;
+    ArrayList<Map<String,String>> mList;
 
-    public RemoveRecyclerItemAdapter(Context context, ArrayList<String> list) {
+    public RemoveRecyclerItemAdapter(Context context, ArrayList<Map<String,String>> list) {
         mContext = context;
         mList = list;
         mInflater = LayoutInflater.from(context);
@@ -34,7 +38,9 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final RemoveRecyclerViewHolder removeRecyclerViewHolder = (RemoveRecyclerViewHolder) holder;
-        removeRecyclerViewHolder.contentTv.setText(mList.get(position));
+        Map<String,String> map = new HashMap<>() ;
+        map = mList.get(position);
+        removeRecyclerViewHolder.contentTv.setText(map.get("food_name"));
     }
 
     @Override
@@ -42,9 +48,19 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
         return mList != null ? mList.size() : 0;
     }
 
-    public void removeItem(int position) {
+    public void removeItem(int position,DbHelper dbHelper) {
+        Map<String,String> map = new HashMap<>();
+        map = mList.get(position);
+        String s = map.get("id");
+
+        delFood(s,dbHelper);
+
         mList.remove(position);
         notifyDataSetChanged();
+    }
+
+    public void refreshData( ArrayList<Map<String,String>> mList){
+        this.mList = mList;
     }
 
 }
