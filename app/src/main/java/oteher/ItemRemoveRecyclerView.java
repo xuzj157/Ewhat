@@ -2,7 +2,6 @@ package oteher;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -15,9 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import personal.nekopalyer.ewhat.R;
 
-/**
- * Created by 智杰 on 1/23/2017.
- */
 
 public class ItemRemoveRecyclerView extends RecyclerView {
 
@@ -25,7 +21,6 @@ public class ItemRemoveRecyclerView extends RecyclerView {
     private int mLastX, mLastY;
     private int mPosition;
     private LinearLayout mItemLayout;
-    private TextView mDel;
     private int mMaxLength;
     private boolean isDragging;
     private boolean isItemMoving;
@@ -69,14 +64,14 @@ public class ItemRemoveRecyclerView extends RecyclerView {
                     RemoveRecyclerViewHolder viewHolder = (RemoveRecyclerViewHolder) getChildViewHolder(view);
                     mItemLayout = viewHolder.layout;
                     mPosition = viewHolder.getAdapterPosition();
-                    mDel = (TextView) mItemLayout.findViewById(R.id.id_item_del_tv);
+                    TextView mDel = (TextView) mItemLayout.findViewById(R.id.id_item_del_tv);
                     mMaxLength = mDel.getWidth();
 
                     mDel.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             mListener.onDeleteClick(mPosition);
-                            newToast(mPosition);
+                            newToast();
                             mItemLayout.scrollTo(0, 0);
                             mDelBtnState = 0;
                         }
@@ -182,10 +177,8 @@ public class ItemRemoveRecyclerView extends RecyclerView {
         isDragging = state == SCROLL_STATE_DRAGGING;
     }
 
-    public void newToast(int num) {
-
+    public void newToast() {
         Toast.makeText(mContext, "成功删除", Toast.LENGTH_SHORT).show();
-
     }
 
 

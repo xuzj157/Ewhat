@@ -1,17 +1,10 @@
 package oteher;
 
 import android.database.Cursor;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-/**
- * Created by 智杰 on 2016/11/10.
- */
 
 public class Tools {
 
@@ -22,10 +15,10 @@ public class Tools {
         return s;
     }
 
-    public static List<String> Array2list(String[] s) {
-        List<String> sl = Arrays.asList(s);
-        return sl;
-    }
+//    public static List<String> Array2list(String[] s) {
+//        List<String> sl = Arrays.asList(s);
+//        return sl;
+//    }
 
     public static ArrayList<String> intoList(int k, DbHelper dbHelper) {
 
@@ -39,8 +32,9 @@ public class Tools {
         }else {
             listFood.add("您未添加食品或店铺名");
             listFood.add("请进入添加界面添加");
+            return listFood;
         }
-
+        cursor.close();
         return listFood;
 
     }
@@ -60,6 +54,7 @@ public class Tools {
                 result.add(mapFood);
             }
         }else return null;
+        cursor.close();
         return result;
     }
 

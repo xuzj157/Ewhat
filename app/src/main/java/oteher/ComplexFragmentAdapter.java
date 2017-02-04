@@ -1,4 +1,4 @@
-package fragment;
+package oteher;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,12 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 智杰 on 2016/11/9.
- */
 public class ComplexFragmentAdapter extends FragmentPagerAdapter {
 
-    List<Fragment> fragmentList = new ArrayList<>();
+    private List<Fragment> fragmentList = new ArrayList<>();
 
     public ComplexFragmentAdapter(FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);

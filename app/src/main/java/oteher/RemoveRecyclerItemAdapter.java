@@ -4,27 +4,20 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-
 import personal.nekopalyer.ewhat.R;
-
 import static oteher.Tools.delFood;
 
-/**
- * Created by 智杰 on 1/23/2017.
- */
 
 public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
 
-    private Context mContext;
+//    private Context mContext;
     private LayoutInflater mInflater;
-    ArrayList<Map<String,String>> mList;
+    private ArrayList<Map<String,String>> mList;
 
     public RemoveRecyclerItemAdapter(Context context, ArrayList<Map<String,String>> list) {
-        mContext = context;
+//        mContext = context;
         mList = list;
         mInflater = LayoutInflater.from(context);
     }
@@ -38,7 +31,7 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final RemoveRecyclerViewHolder removeRecyclerViewHolder = (RemoveRecyclerViewHolder) holder;
-        Map<String,String> map = new HashMap<>() ;
+        Map<String,String> map;
         map = mList.get(position);
         removeRecyclerViewHolder.contentTv.setText(map.get("food_name"));
     }
@@ -49,7 +42,7 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
     }
 
     public void removeItem(int position,DbHelper dbHelper) {
-        Map<String,String> map = new HashMap<>();
+        Map<String,String> map;
         map = mList.get(position);
         String s = map.get("id");
 

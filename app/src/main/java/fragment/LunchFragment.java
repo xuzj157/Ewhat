@@ -47,7 +47,6 @@ public class LunchFragment extends Fragment {
     private TextView mShowTv;
     private ObjectAnimator Alpha;
     private FrameLayout.LayoutParams animatorTextParams;
-    private final String SELECT_FOOD = "select food_name from food where kind = ?";
     private Handler handler = new Handler();
 
     Runnable runSetText = new Runnable() {
@@ -115,7 +114,7 @@ public class LunchFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    mListFood = intoList(2,dbHelper);
+                    mListFood = intoList(2, dbHelper);
                     handler.post(runSetText);
                     handler.post(runSetAnimationFirst);
                     handler.post(runSetAnimationSecond);

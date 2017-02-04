@@ -3,28 +3,24 @@ package fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
 import oteher.DbHelper;
 import personal.nekopalyer.ewhat.R;
 
-/**
- * Created by 智杰 on 1/29/2017.
- */
+
 
 public class AddRightFragment extends Fragment implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private EditText mAddEt;
-    private final String INSERT_FOOD = "insert into food values (null,?,?)";
+
     private RadioButton mBreakfastRb;
     private RadioButton mLunchRb;
     private RadioButton mDinnerRb;
@@ -34,7 +30,7 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_right, null);
+        View view = inflater.inflate(R.layout.fragment_add_right,null);
         view.findViewById(R.id.id_add_bt).setOnClickListener(this);
         context = getContext();
         dbHelper = new DbHelper(context,"food.db3",1);
@@ -55,20 +51,20 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
                 insertFood(s,1);
                 newToast(s+"已经加入菜单");
                 mAddEt.setText(null);
-                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                mDrawerLayout.closeDrawer(GravityCompat.END);
             }else if (mLunchRb.isChecked()){
                 insertFood(s,2);
                 newToast(s+"已经加入菜单");
                 mAddEt.setText(null);
-                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                mDrawerLayout.closeDrawer(GravityCompat.END);
             }else if(mDinnerRb.isChecked()){
                 insertFood(s,3);
                 newToast(s+"已经加入菜单");
                 mAddEt.setText(null);
-                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                mDrawerLayout.closeDrawer(GravityCompat.END);
             }else{
                 newToast("您没有选择就餐类型");
-                mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                mDrawerLayout.closeDrawer(GravityCompat.END);
             }
         }else{
             newToast("你不能什么都不告诉我！");
@@ -91,6 +87,7 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
     }
 
     private void insertFood(String food, int kind){
+        final String INSERT_FOOD = "insert into food values (null,?,?)";
         dbHelper.getReadableDatabase().execSQL(INSERT_FOOD,new Object[]{food,kind});
     }
 

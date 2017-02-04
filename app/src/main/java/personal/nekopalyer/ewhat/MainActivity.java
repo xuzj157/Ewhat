@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import java.util.ArrayList;
 import java.util.List;
 import fragment.BreakfastFragment;
-import fragment.ComplexFragmentAdapter;
+import oteher.ComplexFragmentAdapter;
 import fragment.DinnerFragment;
 import fragment.LunchFragment;
 

@@ -7,10 +7,6 @@ import android.widget.TextView;
 
 import personal.nekopalyer.ewhat.R;
 
-/**
- * Created by 智杰 on 1/23/2017.
- */
-
 public class RemoveRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     public TextView contentTv;

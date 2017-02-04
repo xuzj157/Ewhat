@@ -44,8 +44,6 @@ public class BreakfastFragment extends Fragment {
     private TextView mShowTv;
     private ObjectAnimator Alpha;
     private FrameLayout.LayoutParams animatorTextParams;
-    private final String SELECT_FOOD = "select food_name from food where kind = ?";
-
     private Handler handler = new Handler();
     Runnable runSetText = new Runnable() {
         @Override
