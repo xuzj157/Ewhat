@@ -46,7 +46,7 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
         int i = mAddEt.getText().toString().trim().length();
 
         if(i != 0){
-            String s = mAddEt.getText().toString();
+            String s = mAddEt.getText().toString().trim();
             if(mBreakfastRb.isChecked()){
                 insertFood(s,1);
                 newToast(s+"已经加入菜单");
