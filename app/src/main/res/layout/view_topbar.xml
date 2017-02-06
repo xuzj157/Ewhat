@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/orange_2"
     android:paddingStart="11dp"
     android:paddingTop="11dp"
     android:paddingEnd="11dp">
@@ -23,8 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="111"
-        android:textColor="@color/black"
-        android:textSize="24sp"/>
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.7"/>
 
     <Button
         android:id="@+id/btn_right"
@@ -32,11 +34,12 @@
         android:layout_height="27dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/btn_selctor"/>
+        android:background="@mipmap/add"
+        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray_1"
-        android:layout_alignParentBottom="true"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="3dp"-->
+        <!--android:background="@color/gray_1"-->
+        <!--android:layout_alignParentBottom="true"/>-->
 </RelativeLayout>

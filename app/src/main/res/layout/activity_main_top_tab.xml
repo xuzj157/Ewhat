@@ -22,7 +22,8 @@
             android:textStyle="bold"
             android:background="@drawable/cricle"
             android:text="@string/breakfast"
-            android:textSize="@dimen/tab_text"/>
+            android:textSize="@dimen/tab_text"
+            android:letterSpacing="0.3"/>
 
         <RadioButton
             android:button="@null"
@@ -35,7 +36,8 @@
             android:background="@drawable/cricle"
             android:text="@string/lunch"
             android:textStyle="bold"
-            android:textSize="@dimen/tab_text"/>
+            android:textSize="@dimen/tab_text"
+            android:letterSpacing="0.3"/>
 
         <RadioButton
             android:textStyle="bold"
@@ -48,7 +50,8 @@
             android:layout_height="40dp"
             android:background="@drawable/cricle"
             android:text="@string/dinner"
-            android:textSize="@dimen/tab_text"/>
+            android:textSize="@dimen/tab_text"
+            android:letterSpacing="0.3"/>
 
     </RadioGroup>
 

@@ -16,8 +16,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textColor="@color/gray_2"
+            android:textSize="20sp"
+            android:letterSpacing="0.3"/>
 
         <TextView
             android:id="@+id/id_item_del_tv"
@@ -34,7 +35,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="3dp"
         android:orientation="horizontal">
 
         <View

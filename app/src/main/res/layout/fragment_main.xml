@@ -34,7 +34,8 @@
         android:textOn="停止"
         android:textOff="开始"
         android:background="@drawable/is_selected"
-        android:checked="false"/>
+        android:checked="false"
+        android:letterSpacing="0.1"/>
 
     <ImageButton
         android:paddingTop="9dp"
