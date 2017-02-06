@@ -162,9 +162,9 @@ public class MainActivity extends FragmentActivity {
 
     private void resetTextView() {
 
-        mTabBreakfastRb.setTextColor(Color.parseColor("#FFFFFF"));
-        mTabLunchRb.setTextColor(Color.parseColor("#FFFFFF"));
-        mTabDinnerRb.setTextColor(Color.parseColor("#FFFFFF"));
+        mTabBreakfastRb.setTextColor(Color.parseColor("#FEFEFD"));
+        mTabLunchRb.setTextColor(Color.parseColor("#FEFEFD"));
+        mTabDinnerRb.setTextColor(Color.parseColor("#FEFEFD"));
 
         mTabBreakfastRb.setTextSize(15);
         mTabLunchRb.setTextSize(15);
