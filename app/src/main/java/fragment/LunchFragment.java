@@ -26,9 +26,6 @@ import oteher.Tools;
 
 import static oteher.Tools.intoList;
 
-/**
- * Created by 智杰 on 2016/11/9.
- */
 
 public class LunchFragment extends Fragment {
 

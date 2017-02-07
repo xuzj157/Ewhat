@@ -11,7 +11,6 @@ import android.widget.TextView;
 public class LaunchActivity extends AppCompatActivity {
     //持续时间比较稳定，通常用于放置广告
 
-
     Button button ;
     TextView textView;
     @Override
@@ -30,7 +29,7 @@ public class LaunchActivity extends AppCompatActivity {
                 startActivity(new Intent(LaunchActivity.this, MainActivity.class));
                 LaunchActivity.this.finish();
             }
-        }, 600000);
+        }, 3000);
 
         button = (Button)findViewById(R.id.id_launch_into_bt);
         button.setOnClickListener(new View.OnClickListener() {
@@ -40,18 +39,6 @@ public class LaunchActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 }
 
-
-//public class LaunchActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_launch);
-//    }
-//}

@@ -20,14 +20,11 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private EditText mAddEt;
-
     private RadioButton mBreakfastRb;
     private RadioButton mLunchRb;
     private RadioButton mDinnerRb;
     private Context context;
     private DbHelper dbHelper;
-
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_right,null);

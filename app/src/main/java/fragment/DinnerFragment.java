@@ -1,8 +1,5 @@
 package fragment;
 
-/**
- * Created by 智杰 on 1/30/2017.
- */
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -30,9 +27,7 @@ import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 
 import static oteher.Tools.intoList;
 
-/**
- * Created by 智杰 on 2016/11/9.
- */
+
 
 public class DinnerFragment extends Fragment {
     Context context;
