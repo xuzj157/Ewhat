@@ -11,8 +11,9 @@ import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
-import android.widget.Toast;
 import personal.nekopalyer.ewhat.R;
+
+import static oteher.Tools.newToast;
 
 
 public class ItemRemoveRecyclerView extends RecyclerView {
@@ -71,7 +72,7 @@ public class ItemRemoveRecyclerView extends RecyclerView {
                         @Override
                         public void onClick(View v) {
                             mListener.onDeleteClick(mPosition);
-                            newToast();
+                            newToast(mContext,"成功删除");
                             mItemLayout.scrollTo(0, 0);
                             mDelBtnState = 0;
                         }
@@ -177,9 +178,9 @@ public class ItemRemoveRecyclerView extends RecyclerView {
         isDragging = state == SCROLL_STATE_DRAGGING;
     }
 
-    public void newToast() {
-        Toast.makeText(mContext, "成功删除", Toast.LENGTH_SHORT).show();
-    }
+//    public void newToast() {
+//        Toast.makeText(mContext, "成功删除", Toast.LENGTH_SHORT).show();
+//    }
 
 
     public void setOnItemClickListener(OnItemClickListener listener) {

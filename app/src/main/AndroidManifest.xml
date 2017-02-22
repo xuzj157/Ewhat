@@ -9,15 +9,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activityx
+        <activity
             android:name=".LaunchActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activityx>
+        </activity>
         <activity android:name=".RemoveRecyclerActivity" />
         <activity android:name=".MainActivity"/>
     </application>

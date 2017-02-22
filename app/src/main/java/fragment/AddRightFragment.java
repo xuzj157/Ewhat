@@ -14,6 +14,7 @@ import android.widget.Toast;
 import oteher.DbHelper;
 import personal.nekopalyer.ewhat.R;
 
+import static oteher.Tools.newToast;
 
 
 public class AddRightFragment extends Fragment implements View.OnClickListener {
@@ -46,25 +47,25 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
             String s = mAddEt.getText().toString().trim();
             if(mBreakfastRb.isChecked()){
                 insertFood(s,1);
-                newToast(s+"已经加入菜单");
+                newToast(context,s+"已经加入菜单");
                 mAddEt.setText(null);
                 mDrawerLayout.closeDrawer(GravityCompat.END);
             }else if (mLunchRb.isChecked()){
                 insertFood(s,2);
-                newToast(s+"已经加入菜单");
+                newToast(context,s+"已经加入菜单");
                 mAddEt.setText(null);
                 mDrawerLayout.closeDrawer(GravityCompat.END);
             }else if(mDinnerRb.isChecked()){
                 insertFood(s,3);
-                newToast(s+"已经加入菜单");
+                newToast(context,s+"已经加入菜单");
                 mAddEt.setText(null);
                 mDrawerLayout.closeDrawer(GravityCompat.END);
             }else{
-                newToast("您没有选择就餐类型");
+                newToast(context,"您没有选择就餐类型");
                 mDrawerLayout.closeDrawer(GravityCompat.END);
             }
         }else{
-            newToast("你不能什么都不告诉我！");
+            newToast(context,"你不能什么都不告诉我！");
         }
 
 //        mDrawerLayout.closeDrawer(Gravity.RIGHT);
@@ -79,9 +80,9 @@ public class AddRightFragment extends Fragment implements View.OnClickListener {
         this.mDrawerLayout = drawer_layout;
     }
 
-    private void newToast(String s){
-        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
-    }
+//    private void newToast(String s){
+//        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+//    }
 
     private void insertFood(String food, int kind){
         final String INSERT_FOOD = "insert into food values (null,?,?)";

@@ -1,10 +1,15 @@
 package oteher;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import personal.nekopalyer.ewhat.R;
 
 public class Tools {
 
@@ -62,6 +67,10 @@ public class Tools {
         String DELETE_FOOD = "delete from food where id = " + id;
         dbHelper.getReadableDatabase().execSQL(DELETE_FOOD);
         return true;
+    }
+
+    public static void newToast(Context context, String string){
+        Toast.makeText(context, string,Toast.LENGTH_LONG).show();
     }
 
 }

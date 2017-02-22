@@ -21,7 +21,6 @@ import oteher.DbHelper;
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 import oteher.Tools;
-
 import static oteher.Tools.intoList;
 
 
@@ -117,6 +116,7 @@ public class BreakfastFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+
                     mListFood = intoList(1,dbHelper);
                     handler.post(runSetText);
                     handler.post(runSetAnimationFirst);
