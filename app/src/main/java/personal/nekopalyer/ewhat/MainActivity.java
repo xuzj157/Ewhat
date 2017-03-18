@@ -11,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import fragment.BreakfastFragment;
 import oteher.ComplexFragmentAdapter;
 import fragment.DinnerFragment;
@@ -31,6 +33,7 @@ public class MainActivity extends FragmentActivity {
     private int currentIndex;
     private int screenWidth;
     private static int color = Color.YELLOW;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class MainActivity extends FragmentActivity {
         mTabBreakfastRb.setTextSize(21);
 //        mTabBreakfastRb.setBackgroundColor(Color.GRAY);
 
+
+        //设置手势的三种状态，对于分别的手势
         mPageVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -98,6 +103,7 @@ public class MainActivity extends FragmentActivity {
                 mTabLineIv.setLayoutParams(lp);
             }
 
+            //选择键
             @Override
             public void onPageSelected(int position) {
                 resetTextView();
@@ -127,6 +133,8 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
+
+        //点击事件
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

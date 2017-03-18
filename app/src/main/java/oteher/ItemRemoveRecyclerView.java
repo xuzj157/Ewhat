@@ -11,10 +11,21 @@ import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
+
 import personal.nekopalyer.ewhat.R;
 
 import static oteher.Tools.newToast;
 
+
+/**
+ * Before you read this code, please make sure you have read the README in this project.Thanks!
+ * <p>
+ * Created by xuzj157 on 2016/11/9.
+ *
+ * 滑动删除界面
+ * 基于recyclerView
+ *
+ */
 
 public class ItemRemoveRecyclerView extends RecyclerView {
 
@@ -72,7 +83,7 @@ public class ItemRemoveRecyclerView extends RecyclerView {
                         @Override
                         public void onClick(View v) {
                             mListener.onDeleteClick(mPosition);
-                            newToast(mContext,"成功删除");
+                            newToast(mContext, "成功删除");
                             mItemLayout.scrollTo(0, 0);
                             mDelBtnState = 0;
                         }

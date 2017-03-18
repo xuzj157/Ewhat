@@ -6,6 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+/**
+ * Before you read this code, please make sure you have read the README in this project.Thanks!
+ * <p>
+ * Created by xuzj157 on 2016/11/9.
+ * <p>
+ *     初始界面
+ *
+ */
 public class LaunchActivity extends AppCompatActivity {
     //持续时间比较稳定，通常用于放置广告
     Button button ;

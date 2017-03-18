@@ -4,14 +4,21 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Before you read this code, please make sure you have read the README in this project.Thanks!
+ * <p>
+ * Created by xuzj157 on 2016/11/9.
+ *
+ * 数据库帮助类
+ * 主要用于第一次打开APP向数据库中插入数据
+ *
+ */
 
-public class DbHelper extends SQLiteOpenHelper{
-
+public class DbHelper extends SQLiteOpenHelper {
 
     public DbHelper(Context context, String name, int version) {
         super(context, name, null, version);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {

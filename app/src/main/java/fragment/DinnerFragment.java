@@ -21,12 +21,12 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 
 import oteher.DbHelper;
+import oteher.FoodInfo;
 import oteher.Tools;
 import personal.nekopalyer.ewhat.R;
 import personal.nekopalyer.ewhat.RemoveRecyclerActivity;
 
 import static oteher.Tools.intoList;
-
 
 
 public class DinnerFragment extends Fragment {
@@ -140,7 +140,7 @@ public class DinnerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle kind = new Bundle();
-                kind.putSerializable("kind", 3);
+                kind.putSerializable("kind", FoodInfo.DINNER);
                 Intent intent = new Intent(context, RemoveRecyclerActivity.class);
                 intent.putExtras(kind);
                 startActivity(intent);

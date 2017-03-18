@@ -41,7 +41,7 @@ public class RemoveRecyclerItemAdapter extends RecyclerView.Adapter {
         return mList != null ? mList.size() : 0;
     }
 
-    public void removeItem(int position,DbHelper dbHelper) {
+    public void removeItem(int position,DbHelper dbHelper) {            //根据行号删除数据
         Map<String,String> map;
         map = mList.get(position);
         String s = map.get("id");

@@ -14,12 +14,21 @@ import java.util.ArrayList;
 import java.util.Map;
 import fragment.AddRightFragment;
 import oteher.DbHelper;
+import oteher.FoodInfo;
 import oteher.ItemRemoveRecyclerView;
 import oteher.OnItemClickListener;
 import oteher.RemoveRecyclerItemAdapter;
 import static oteher.Tools.intoMap;
 
-
+/**
+ * Before you read this code, please make sure you have read the README in this project.Thanks!
+ * <p>
+ * Created by xuzj157 on 2016/11/9.
+ * <p>
+ *
+ *     滑动删除界面
+ *
+ */
 public class RemoveRecyclerActivity extends AppCompatActivity implements View.OnClickListener {
     private ItemRemoveRecyclerView recyclerView;
     private ArrayList<Map<String,String>> mListFood;
@@ -31,7 +40,7 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
 //    private FragmentManager fManager;
     private DbHelper dbHelper;
 //    private Intent intent;
-    private int kind;
+    private int kind;        //食物的种类
     private TextView mTopBarTv;
     private SwipeRefreshLayout swipeRefreshLayout;
     @Override
@@ -56,7 +65,7 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
 //                break;
 //        }
         intoListFood();
-        final RemoveRecyclerItemAdapter adapter = new RemoveRecyclerItemAdapter(this, mListFood);
+        final RemoveRecyclerItemAdapter adapter = new RemoveRecyclerItemAdapter(this, mListFood);     //设置一个调节器
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         recyclerView.setOnItemClickListener(new OnItemClickListener() {
@@ -81,8 +90,10 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
     }
     private void initViews() {
         recyclerView = (ItemRemoveRecyclerView) findViewById(R.id.id_item_remove_recyclerview);
-        Intent intent = getIntent();
+
+        Intent intent = getIntent();                                 //从传进来的intent中取出kind
         kind = (Integer) intent.getSerializableExtra("kind");
+
         mTopBarTv = (TextView) findViewById(R.id.id_topbar_tv);
         FragmentManager fManager = getSupportFragmentManager();
         AddRightFragment mAddRightFg = (AddRightFragment) fManager.findFragmentById(R.id.fg_right_menu);
@@ -92,6 +103,7 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         btn_right.setOnClickListener(this);
         Button btn_back = (Button) mTopBar.findViewById(R.id.btn_back);
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.remove_sl);
+        //返回mainctivity
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,18 +137,18 @@ public class RemoveRecyclerActivity extends AppCompatActivity implements View.On
         drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED,
                 GravityCompat.END);    //解除锁定
     }
-    private void intoListFood(){
+    private void intoListFood(){            //插入食物
         switch (kind) {
             case 1:
-                mListFood = intoMap(1, dbHelper);
+                mListFood = intoMap(FoodInfo.BREAKFAST, dbHelper);      //将数据库中的数据取出插入list<Map>
                 mTopBarTv.setText("早餐");
                 break;
             case 2:
-                mListFood = intoMap(2, dbHelper);
+                mListFood = intoMap(FoodInfo.LUNCH, dbHelper);
                 mTopBarTv.setText("午餐");
                 break;
             case 3:
-                mListFood = intoMap(3, dbHelper);
+                mListFood = intoMap(FoodInfo.DINNER, dbHelper);
                 mTopBarTv.setText("晚餐");
                 break;
         }
